@@ -11,8 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
   fluttertoast: any
-  cached_network_image:
-        git: https://github.com/Cretezy/flutter_cached_network_image.git
+  flutter_cache_manager:
+      git: https://github.com/zhangruiyu/flutter_cache_manager.git
   navigation_bar: any
   flutter_native_image:
       git: https://github.com/btastic/flutter_native_image.git
