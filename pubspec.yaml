@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  fluttertoast: any
+  fluttertoast: ^2.1.1
   cached_network_image:
       git: https://github.com/zhangruiyu/flutter_cached_network_image.git
   navigation_bar: any
