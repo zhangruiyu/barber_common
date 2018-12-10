@@ -13,7 +13,7 @@ import '../bean_factory.dart';
 typedef T TransformToEntity<T>(dynamic json);
 
 class RequestClient {
-  static Future<T> request<T>( String url,
+  static Future<T> request<T>(String url,
       [Map<String, dynamic> queryParameters]) async {
     Options options = new Options(
         baseUrl:
