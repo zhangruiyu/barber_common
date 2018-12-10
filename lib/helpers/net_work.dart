@@ -1,16 +1,19 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/material.dart';
+
 import 'package:barber_common/config/constant.dart';
 import 'package:barber_common/exception/NetException.dart';
 import 'package:barber_common/utils/toast_utils.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+
+import '../bean_factory.dart';
 
 typedef T TransformToEntity<T>(dynamic json);
 
 class RequestClient {
-  static Future<T> request<T>(TransformToEntity modelTransform, String url,
+  static Future<T> request<T>( String url,
       [Map<String, dynamic> queryParameters]) async {
     Options options = new Options(
         baseUrl:
@@ -37,13 +40,14 @@ class RequestClient {
         debugPrint(json.encode(response.data));
         if (data['code'].toString() == '1003') {
 //        UserHelper.loginOut();
-          return new Future.value(modelTransform(response.data) as T);
+          return new Future.value(BeanFactory.generateOBJ<T>(response.data));
         } else if (data['code'].toString() != '200') {
 //        ScaffoldState.showSnackBar(new SnackBar(content: new Text(data['msg'])));
           ToastUtils.toast(data['message']);
           return new Future.error(new NetException(data['code'], data['msg']));
         } else {
-          return new Future.value(modelTransform(response.data['data']) as T);
+          return new Future.value(
+              BeanFactory.generateOBJ<T>(response.data['data']));
         }
       } else {
         if (response.statusCode == 400) {

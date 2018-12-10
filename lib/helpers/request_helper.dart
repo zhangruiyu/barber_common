@@ -7,29 +7,23 @@ import 'package:barber_common/module/auto/entitys/register_entity.dart';
 
 class RequestHelperCommon {
   static Future<LoginEntity> login(String tel, String password) {
-    return RequestClient.request<LoginEntity>(
-        (json) => LoginEntity.fromJson(json),
-        '/auth/login',
+    return RequestClient.request<LoginEntity>('/auth/login',
         {'identifier': tel, 'credential': password, 'identity_type': "tel"});
   }
 
   static Future<RegisterEntity> sendRegisterCode(String tel, String password) {
     return RequestClient.request<RegisterEntity>(
-        (json) => RegisterEntity.fromJson(json),
-        '/auth/register1',
-        {'tel': tel, 'password': password});
+        '/auth/register1', {'tel': tel, 'password': password});
   }
 
   static Future<Map<String, dynamic>> registerUser(
       String tel, String password, String code) {
-    return RequestClient.request<Map<String, dynamic>>(
-        (json) => json,
-        '/auth/register2',
+    return RequestClient.request<Map<String, dynamic>>('/auth/register2',
         {'tel': tel, 'password': password, 'authCode': code});
   }
 
   static Future<CosEntity> periodEffectiveSign(int type) {
-    return RequestClient.request<CosEntity>((json) => CosEntity.fromJson(json),
+    return RequestClient.request<CosEntity>(
         '/cos/common/periodEffectiveSign', {'type': type});
   }
 }
