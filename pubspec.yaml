@@ -29,6 +29,7 @@ dependencies:
   redux: any
   redux_logging: any
   redux_thunk: any
+  webview_flutter: any
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
 
